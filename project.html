@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encrypted Network Traffic Anomaly Detection</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1e1e2f;
+      color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2c2c40;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #3498db;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin: 0;
+      color: #00aced;
+    }
+
+    header p {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #cccccc;
+    }
+
+    .control-panel {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px;
+    }
+
+    select, button {
+      background-color: #3498db;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    select {
+      background-color: #2c2c40;
+      border: 1px solid #3498db;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .stat-box {
+      background-color: #2c2c40;
+      padding: 20px 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .stat-box h2 {
+      margin: 0;
+      color: #00aced;
+    }
+
+    .stat-box p {
+      font-size: 14px;
+      color: #cccccc;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: #2c2c40;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      background-color: #3498db;
+    }
+
+    tr:hover {
+      background-color: #34344f;
+    }
+
+    .normal {
+      color: #2ecc71;
+      font-weight: bold;
+    }
+
+    .anomaly {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .low-sev {
+      color: #2ecc71; /* Green */
+      font-weight: bold;
+    }
+
+    .medium-sev {
+      color: #f1c40f; /* Yellow */
+      font-weight: bold;
+    }
+
+    .high-sev {
+      color: #e74c3c; /* Red */
+      font-weight: bold;
+    }
+
+    .sidebar {
+      background-color: #2c2c40;
+      padding: 20px;
+      margin: 30px auto;
+      width: 60%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #2c2c40;
+      font-size: 12px;
+      color: #aaaaaa;
+      border-top: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🔐 Encrypted Network Traffic Anomaly Detection</h1>
+    <p>Real-Time ML-Based Intrusion Detection System</p>
+  </header>
+
+  <div class="control-panel">
+    <select>
+      <option>Wi-Fi</option>
+      <option>Ethernet</option>
+      <option>Demo Traffic (pcap)</option>
+    </select>
+    <button>▶️ Start Capture</button>
+    <button>⏹️ Stop Capture</button>
+    <button>📂 Export Logs</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <h2>12,340</h2>
+      <p>Packets Analyzed</p>
+    </div>
+    <div class="stat-box">
+      <h2>780</h2>
+      <p>Flows Processed</p>
+    </div>
+    <div class="stat-box">
+      <h2 style="color:#e74c3c;">14</h2>
+      <p>Anomalies Detected</p>
+    </div>
+  </div>
+
+  <table id="trafficTable">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Source IP</th>
+        <th>Destination IP</th>
+        <th>Protocol</th>
+        <th>Score</th>
+        <th>Severity (%)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>10:42:31</td>
+        <td>192.168.1.10</td>
+        <td>8.8.8.8</td>
+        <td>TCP</td>
+        <td>0.92</td>
+        <td>78</td>
+        <td class="anomaly">🔴 Anomaly</td>
+      </tr>
+      <tr>
+        <td>10:43:12</td>
+        <td>192.168.1.5</td>
+        <td>10.0.0.45</td>
+        <td>TLS</td>
+        <td>0.47</td>
+        <td>0</td>
+        <td class="normal">🟢 Normal</td>
+      </tr>
+      <tr>
+        <td>10:44:55</td>
+        <td>172.16.0.7</td>
+        <td>192.168.0.100</td>
+        <td>UDP</td>
+        <td>0.88</td>
+        <td>52</td>
+        <td class="anomaly">🔴 Anomaly</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sidebar">
+    <h3>⚙️ Model Information</h3>
+    <p><strong>Model Used:</strong> XGBoost (Binary Classifier)</p>
+    <p><strong>Dataset:</strong> CICIDS 2017 (Encrypted Traffic)</p>
+    <p><strong>Features:</strong> Flow Metadata + Payload Entropy</p>
+    <p><strong>Threshold:</strong> 0.5</p>
+    <p><strong>Accuracy:</strong> 96.7%</p>
+  </div>
+
+  <footer>
+    © 2025 Encrypted Network Traffic Anomaly Detection | v1.1<br>
+    Developed by Team Triveni — Department of Computer Science
+  </footer>
+
+  <script>
+    // Dynamic color coding for Severity column
+    document.addEventListener("DOMContentLoaded", () => {
+      const rows = document.querySelectorAll("#trafficTable tbody tr");
+
+      rows.forEach(row => {
+        const severityCell = row.cells[5];
+        const severity = parseFloat(severityCell.textContent);
+
+        if (isNaN(severity)) return;
+
+        if (severity === 0) {
+          severityCell.classList.add("low-sev");
+          severityCell.textContent = "0%";
+        } else if (severity > 0 && severity <= 40) {
+          severityCell.classList.add("medium-sev");
+          severityCell.textContent = severity + "%";
+        } else if (severity > 40) {
+          severityCell.classList.add("high-sev");
+          severityCell.textContent = severity + "%";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

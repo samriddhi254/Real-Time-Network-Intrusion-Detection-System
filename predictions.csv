@@ -1,0 +1,2 @@
+protocol_type,flag,src_bytes,dst_bytes,count,same_srv_rate,diff_srv_rate,dst_host_same_srv_rate,dst_host_diff_srv_rate,dst_host_same_src_port_rate,label,predicted_attack_type,severity_score,severity_level
+6,0,0.9728,1.0,0.95,0,0,0,0,0,Anomaly,11,0.73059756,High

@@ -1,0 +1,9 @@
+Flask==2.3.3
+scapy==2.6.1
+pycryptodome==3.23.0
+pandas==2.3.3
+numpy==2.3.4
+scikit-learn==1.7.2
+xgboost==3.0.5
+joblib==1.5.2
+imbalanced-learn==0.14.0
